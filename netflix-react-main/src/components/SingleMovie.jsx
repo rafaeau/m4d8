@@ -95,7 +95,7 @@ class SingleMovie extends Component {
           }}
         />
 
-        <Link to={'/details/' + details.imdbID}>
+        <Link to={'/details/' +  this.props.data.imdbID}>
           <Badge variant="warning">Details</Badge>        
         </Link>
 

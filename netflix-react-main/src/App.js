@@ -7,7 +7,7 @@ import MovieDetails from "./components/MovieDetails";
 
 const App = () => (
   <Router>
-    <Route path = '/' component= {HomePage}/>
+    <Route path = '/' component= {HomePage} exact={true}/>
     <Route path = '/details/:MovieId' component= {MovieDetails}/>
   </Router>
 )
