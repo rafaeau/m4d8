@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import {useParams} from "react-router-dom"
+import { useParams } from "react-router-dom";
 
 const MovieDetails = () => {
   const [details, setDetails] = useState(null);
   const [comments, setComments] = useState([]);
 
-  const params = useParams()
+  const params = useParams();
 
-  console.log({params})
-
+  console.log({ params });
 
   useEffect(() => {
     const retrievedIdFromURL = async () => {
@@ -20,7 +19,7 @@ const MovieDetails = () => {
 
         if (resp.ok) {
           let data = await resp.json();
-          console.log({data});
+          console.log({ data });
           setDetails(data);
         } else {
           console.log("Error");
@@ -34,7 +33,7 @@ const MovieDetails = () => {
       try {
         let response = await fetch(
           "https://striveschool-api.herokuapp.com/api/comments/" +
-          params.MovieId,
+            params.MovieId,
           {
             headers: {
               Authorization:
@@ -55,23 +54,30 @@ const MovieDetails = () => {
 
     retrievedIdFromURL();
     fetchComments();
-  }, [ params.MovieId]);
+  }, [params.MovieId]);
 
   return (
     <Container>
-     {details &&  <Row className="justify-content-center">
-   
-          <Col md={8} className="text-center">
-            <Card>
+      {details && (
+        <Row className="justify-content-center">
+          <Col md={13} className="text-center">
+            <Card style={{width: '22rem'}}>
               <Card.Img variant="top" src={details.Poster} />
               <Card.Body>
                 <Card.Title>{details.Title}</Card.Title>
                 {/* <Card.Text>{comments}</Card.Text> */}
+                <ul>
+                  {comments.map((c) => (
+                    <ol className="text-left mt-2">
+                      {c.comment}
+                    </ol>
+                  ))}
+                </ul>
               </Card.Body>
             </Card>
           </Col>
-        
-      </Row>}
+        </Row>
+      )}
     </Container>
   );
 };
