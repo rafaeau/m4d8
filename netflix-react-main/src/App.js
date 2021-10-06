@@ -8,7 +8,7 @@ import MovieDetails from "./components/MovieDetails";
 const App = () => (
   <Router>
     <Route path = '/' component= {HomePage}/>
-    <Route path = '/details/:FilmId' component= {MovieDetails}/>
+    <Route path = '/details/:MovieId' component= {MovieDetails}/>
   </Router>
 )
 
