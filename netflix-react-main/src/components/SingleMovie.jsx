@@ -1,14 +1,10 @@
 import { Component } from "react";
-import {
-  Col,
-  Modal,
-  Form,
-  InputGroup,
-  FormControl,
-  Button,
-  Alert,
-} from "react-bootstrap";
+import { Col, Modal, Form, InputGroup, FormControl, Button, Alert, Badge } from "react-bootstrap";
 import CommentsList from "./CommentsList";
+import { withRouter } from "react-router";
+import { Link } from 'react-router-dom'
+import MovieDetails from "./MovieDetails";
+
 
 class SingleMovie extends Component {
   state = {
@@ -98,6 +94,11 @@ class SingleMovie extends Component {
             this.fetchComments(this.props.data.imdbID);
           }}
         />
+
+        <Link to={'/details/' + details.imdbID}>
+          <Badge variant="warning">Details</Badge>        
+        </Link>
+
         <Modal
           show={this.state.selected}
           onHide={() => this.setState({ selected: !this.state.selected })}

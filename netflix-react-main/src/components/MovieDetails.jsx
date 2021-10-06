@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 const MovieDetails = ({ match }) => {
     const [details, setDetails] = useState(null);
@@ -50,12 +51,30 @@ const MovieDetails = ({ match }) => {
             }
         };
 
-        fetchDetails();
+        retrievedIdFromURL();
         fetchComments();
     }, [match.params.movieID]);
 
-})
-}
+    return (
+        <Container>
+            <Row key={details.imdbID} className="justify-content-center">
+                {
+                    <Col md={8} className="text-center">
+                        <Card>
+                            <Card.Img variant="top" src={details.Poster} />
+                            <Card.Body>
+                                <Card.Title>{details.Title}</Card.Title>
+                                <Card.Text>
+                                    {comments}
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
 
+                }
+            </Row>
+        </Container>
+    )
+}
 
 export default MovieDetails
